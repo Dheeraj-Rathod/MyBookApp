@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  port: <%= ENV.fetch("DATABASE_PORT", "5432") %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  host: <%= ENV.fetch("DATABASE_HOST", "localhost") %>
+  database: my_book_todo_development
+  username: <%= ENV.fetch("DATABASE_USERNAME", "my_book_todo") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD", "") %>
+
+test:
+  <<: *default
+  host: <%= ENV.fetch("DATABASE_HOST", "localhost") %>
+  database: my_book_todo_test
+  username: <%= ENV.fetch("DATABASE_USERNAME", "my_book_todo") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD", "") %>
+
+production:
+  <<: *default
+  url: <%= ENV.fetch("DATABASE_URL") %>
