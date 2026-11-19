@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+
+mkdir -p tmp/pids tmp/cache log storage
+
+bundle exec rails db:prepare
+
+exec "$@"

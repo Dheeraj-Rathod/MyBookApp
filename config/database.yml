@@ -20,4 +20,8 @@ test:
 
 production:
   <<: *default
-  url: <%= ENV.fetch("DATABASE_URL") %>
+  host: <%= ENV.fetch("DATABASE_HOST", "localhost") %>
+  port: <%= ENV.fetch("DATABASE_PORT", "5432") %>
+  database: <%= ENV.fetch("DATABASE_NAME", "my_book_todo_production") %>
+  username: <%= ENV.fetch("DATABASE_USERNAME", "my_book_todo") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD", "") %>
